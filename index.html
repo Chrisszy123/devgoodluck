@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>/* Prevent flash of wrong theme */(function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t);}());</script>
+  <!-- PLACEHOLDER: Update title with your real name and role -->
+  <title>Bassey Goodluck — Full-Stack Engineer</title>
+  <meta name="description" content="Full-Stack Engineer building fast, thoughtful software from the API layer to the interface.">
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="IMG_4612.JPG">
+  <link rel="apple-touch-icon" href="IMG_4612.JPG">
+  <!-- Open Graph / social sharing -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Bassey Goodluck — Full-Stack Engineer">
+  <meta property="og:description" content="Full-Stack Engineer building fast, thoughtful software from the API layer to the interface.">
+  <meta property="og:image"       content="IMG_4612.JPG">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Bassey Goodluck — Full-Stack Engineer">
+  <meta name="twitter:description" content="Full-Stack Engineer building fast, thoughtful software from the API layer to the interface.">
+  <meta name="twitter:image"      content="IMG_4612.JPG">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       COLOR SYSTEM — edit these custom properties to retheme
+    ============================================================ */
+    :root {
+      /* Backgrounds */
+      --bg:           #111111;
+      --bg-surface:   #191919;
+      --bg-elevated:  #1f1f1f;
+
+      /* Text */
+      --text-primary:   #E8E3D8;
+      --text-secondary: #847e74;
+      --text-muted:     #514d47;
+
+      /* Accent (warm cream / off-white) */
+      --accent:            #F0E6C8;
+      --accent-glow:       rgba(240, 230, 200, 0.08);
+      --accent-glow-hover: rgba(240, 230, 200, 0.14);
+
+      /* Borders */
+      --border:       rgba(240, 230, 200, 0.07);
+      --border-hover: rgba(240, 230, 200, 0.14);
+
+      /* Status green */
+      --green: #4ADE80;
+
+      /* ── Spacing scale ── */
+      --s1:  4px;  --s2:  8px;  --s3: 12px;  --s4: 16px;
+      --s5: 20px;  --s6: 24px;  --s8: 32px;  --s10: 40px;
+      --s12: 48px; --s16: 64px; --s20: 80px;
+
+      /* ── Typography ── */
+      --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+      --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+      /* ── Layout ── */
+      --max-width: 1080px;
+      --r-sm: 6px;
+      --r-md: 10px;
+      --r-lg: 16px;
+
+      /* ── Motion ── */
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur:  180ms;
+    }
+
+    /* ============================================================
+       LIGHT THEME — <html data-theme="light">
+    ============================================================ */
+    [data-theme="light"] {
+      --bg:                #F5F0E8;
+      --bg-surface:        #EDE8DD;
+      --bg-elevated:       #E5E0D4;
+      --text-primary:      #1A1815;
+      --text-secondary:    #5E5850;
+      --text-muted:        #9E9890;
+      --accent:            #1A1815;
+      --accent-glow:       rgba(26, 24, 21, 0.06);
+      --accent-glow-hover: rgba(26, 24, 21, 0.10);
+      --border:            rgba(26, 24, 21, 0.09);
+      --border-hover:      rgba(26, 24, 21, 0.18);
+    }
+    [data-theme="light"] body::before { opacity: 0.025; }
+    [data-theme="light"] body::after {
+      background:
+        radial-gradient(ellipse 70% 55% at 85% 8%,  rgba(26,24,21,0.025) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 5%  85%, rgba(26,24,21,0.015) 0%, transparent 65%);
+    }
+    [data-theme="light"] .nav { background: rgba(245, 240, 232, 0.88); }
+    [data-theme="light"] .btn-primary { color: var(--bg); }
+    [data-theme="light"] .btn-primary:hover { background: #000; color: #F5F0E8; }
+    [data-theme="light"] .available-badge { border-color: rgba(22,163,74,0.35); background: rgba(22,163,74,0.08); color: #15803d; }
+    [data-theme="light"] .pulse-dot,
+    [data-theme="light"] .hero-status-dot { background: #15803d; }
+    [data-theme="light"] .tag-role { background: rgba(26,24,21,0.06); border-color: rgba(26,24,21,0.14); }
+
+    /* Smooth color transition while theme switches */
+    html.theme-transitioning *,
+    html.theme-transitioning *::before,
+    html.theme-transitioning *::after {
+      transition:
+        background-color 0.25s ease,
+        color            0.25s ease,
+        border-color     0.25s ease,
+        box-shadow       0.25s ease !important;
+    }
+
+    /* Theme toggle button */
+    .theme-toggle {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color var(--dur) ease, border-color var(--dur) ease, background var(--dur) ease;
+    }
+    .theme-toggle:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: var(--bg-surface);
+    }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .theme-toggle svg { width: 14px; height: 14px; pointer-events: none; }
+
+    /* ── Hamburger button (mobile only) ── */
+    .nav-hamburger {
+      display: none;
+      width: 32px; height: 32px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 0;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: color var(--dur) ease, border-color var(--dur) ease, background var(--dur) ease;
+    }
+    .nav-hamburger:hover,
+    .nav-hamburger[aria-expanded="true"] { color: var(--text-primary); border-color: var(--border-hover); background: var(--bg-surface); }
+    .nav-hamburger:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .ham-line {
+      display: block;
+      width: 14px; height: 1.5px;
+      background: currentColor;
+      border-radius: 1px;
+      transform-origin: center;
+      transition: transform 0.25s var(--ease), opacity 0.2s ease;
+    }
+    .nav-hamburger[aria-expanded="true"] .ham-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger[aria-expanded="true"] .ham-line:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger[aria-expanded="true"] .ham-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Mobile nav panel ── */
+    .mobile-nav {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(17, 17, 17, 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.28s var(--ease), visibility 0s linear 0.28s;
+    }
+    .mobile-nav.open {
+      visibility: visible; opacity: 1; transform: translateY(0); pointer-events: all;
+      transition: opacity 0.22s ease, transform 0.28s var(--ease), visibility 0s linear 0s;
+    }
+    .mobile-nav-inner { padding: var(--s5) var(--s6) var(--s6); }
+    .mobile-nav-links { list-style: none; display: flex; flex-direction: column; margin-bottom: var(--s5); }
+    .mobile-nav-links a {
+      display: block;
+      padding: var(--s4) 0;
+      font-size: 17px; font-weight: 500;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+      transition: color var(--dur) ease, padding-left var(--dur) ease;
+    }
+    .mobile-nav-links li:last-child a { border-bottom: none; }
+    .mobile-nav-links a:hover,
+    .mobile-nav-links a[aria-current="page"] { color: var(--text-primary); padding-left: var(--s3); }
+    .mobile-nav-footer { display: flex; align-items: center; }
+    [data-theme="light"] .mobile-nav { background: rgba(245, 240, 232, 0.97); }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    a  { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+
+    /* ── Grain texture ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ── Gradient mesh ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 55% at 85% 8%,  rgba(240,230,200,0.035) 0%, transparent 65%),
+        radial-gradient(ellipse 55% 45% at 5%  85%, rgba(240,230,200,0.02)  0%, transparent 65%);
+    }
+
+    nav, main, footer { position: relative; z-index: 1; }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--s6);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      padding: var(--s4) 0;
+      background: rgba(17, 17, 17, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s4);
+    }
+
+    /* PLACEHOLDER: Replace wordmark text with your own */
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+    .nav-logo-mark { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: var(--s6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--s6);
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--dur) ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--text-primary); outline: none; }
+
+    .available-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: 5px 11px;
+      border-radius: 100px;
+      border: 1px solid rgba(74, 222, 128, 0.25);
+      background: rgba(74, 222, 128, 0.05);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      color: var(--green);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2.2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1;   transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.78); }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      padding: var(--s20) 0 var(--s16);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: var(--s12);
+      align-items: start;
+    }
+
+    .hero-content { max-width: 640px; }
+
+    /* Status pill */
+    .hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s2);
+      padding: 5px 12px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: var(--s5);
+    }
+
+    /* PLACEHOLDER: Replace with your role title */
+    .hero-role {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--s3);
+      opacity: 0.8;
+    }
+
+    /* PLACEHOLDER: Replace with your name */
+    .hero-name {
+      font-size: clamp(44px, 6.5vw, 78px);
+      font-weight: 600;
+      line-height: 1.0;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      margin-bottom: var(--s5);
+    }
+
+    /* PLACEHOLDER: Replace with your tagline */
+    .hero-tagline {
+      font-size: clamp(15px, 1.8vw, 19px);
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin-bottom: var(--s8);
+      font-weight: 300;
+      max-width: 520px;
+    }
+
+    /* PLACEHOLDER: Replace with your bio. Wrap key phrases in <strong> */
+    .hero-bio {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s4);
+      margin-bottom: var(--s8);
+    }
+    .hero-bio p {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .hero-bio strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Social pills */
+    .hero-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s2);
+      margin-bottom: var(--s8);
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--text-secondary);
+      transition:
+        color     var(--dur) ease,
+        border-color var(--dur) ease,
+        background   var(--dur) ease;
+    }
+    .social-pill:hover,
+    .social-pill:focus-visible {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+      background: var(--bg-surface);
+      outline: none;
+    }
+    .social-pill svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+    /* CTA buttons */
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: var(--s3); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 20px;
+      border-radius: var(--r-md);
+      font-size: 13.5px;
+      font-weight: 500;
+      border: none;
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) ease, background var(--dur) ease, border-color var(--dur) ease;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #111;
+    }
+    .btn-primary:hover {
+      background: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(240,230,200,0.18);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-surface);
+      transform: translateY(-1px);
+    }
+
+    /* Avatar */
+    .hero-avatar {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border-hover);
+      background: var(--bg-surface);
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px var(--border);
+    }
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      display: block;
+      transition: transform 0.6s var(--ease);
+    }
+    .hero-avatar:hover img { transform: scale(1.03); }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+      letter-spacing: -0.02em;
+    }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats-section {
+      padding: var(--s12) 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+
+    .stat-item {
+      background: var(--bg);
+      text-align: center;
+      padding: var(--s8) var(--s6);
+    }
+
+    /* PLACEHOLDER: These numbers are controlled by data-count / data-suffix attributes below */
+    .stat-number {
+      display: block;
+      font-size: clamp(34px, 4vw, 50px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: var(--s2);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ============================================================
+       PULL QUOTE
+    ============================================================ */
+    .quote-section {
+      padding: var(--s20) 0;
+    }
+
+    .quote-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-label {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: var(--s6);
+    }
+
+    /* PLACEHOLDER: Replace with your engineering philosophy quote */
+    .pull-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(20px, 2.8vw, 32px);
+      line-height: 1.45;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .quote-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--border-hover);
+      margin: var(--s8) auto 0;
+    }
+
+    /* ============================================================
+       CAPABILITIES
+    ============================================================ */
+    .capabilities-section {
+      padding: var(--s16) 0;
+    }
+
+    .section-header { margin-bottom: var(--s10); }
+
+    .section-eyebrow {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--s3);
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s4);
+    }
+
+    .capability-card {
+      padding: var(--s6);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      transition:
+        border-color var(--dur) ease,
+        background   var(--dur) ease,
+        transform    var(--dur) var(--ease),
+        box-shadow   var(--dur) ease;
+    }
+    .capability-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-elevated);
+      transform: translateY(-2px);
+      box-shadow:
+        0 14px 44px rgba(0,0,0,0.35),
+        inset 0 0 40px var(--accent-glow-hover);
+    }
+
+    .card-num {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: var(--s4);
+      letter-spacing: 0.05em;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--s2);
+      letter-spacing: -0.01em;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* ============================================================
+       NOW / CURRENT FOCUS
+    ============================================================ */
+    .now-section {
+      padding: var(--s16) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .now-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: var(--s16);
+      align-items: start;
+    }
+
+    .now-list {
+      margin-top: var(--s10);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .now-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s5);
+      padding: var(--s5) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .now-item:first-child { border-top: 1px solid var(--border); }
+
+    .now-tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: var(--r-sm);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .tag-role     { background: rgba(240,230,200,0.08); color: var(--accent);    border: 1px solid rgba(240,230,200,0.14); }
+    .tag-building { background: rgba(74,222,128,0.07);  color: #4ADE80;           border: 1px solid rgba(74,222,128,0.18); }
+    .tag-ongoing  { background: rgba(148,163,184,0.07); color: #94A3B8;           border: 1px solid rgba(148,163,184,0.14); }
+    .tag-learning { background: rgba(167,139,250,0.07); color: #A78BFA;           border: 1px solid rgba(167,139,250,0.18); }
+
+    .now-item-title {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+    .now-item-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Sidebar */
+    .now-sidebar {
+      padding: var(--s6);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--bg-surface);
+    }
+
+    .now-sidebar-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--s4);
+    }
+
+    /* PLACEHOLDER: Replace with your own availability note */
+    .now-sidebar-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 16.5px;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin-bottom: var(--s5);
+    }
+
+    .now-sidebar-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       MARQUEE
+    ============================================================ */
+    .marquee-section {
+      padding: var(--s12) 0;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .marquee-header {
+      text-align: center;
+      margin-bottom: var(--s8);
+    }
+
+    .marquee-wrap {
+      position: relative;
+    }
+
+    /* Fade edges */
+    .marquee-wrap::before,
+    .marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 140px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-wrap::before { left:  0; background: linear-gradient(to right, var(--bg), transparent); }
+    .marquee-wrap::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 32s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-set {
+      display: flex;
+      align-items: center;
+      gap: var(--s6);
+      padding: var(--s3) 0;
+      /* IMPORTANT: duplicate the set in HTML for seamless loop */
+    }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* PLACEHOLDER: Replace chip text with your real company/client names */
+    .marquee-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: color var(--dur) ease, border-color var(--dur) ease;
+    }
+    .marquee-chip:hover {
+      color: var(--text-secondary);
+      border-color: var(--border-hover);
+    }
+
+    .m-dot {
+      display: inline-block;
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: var(--s8) 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--s4);
+    }
+
+    /* PLACEHOLDER: Replace name + year */
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .footer-copy span { color: var(--text-secondary); }
+
+    .footer-links {
+      display: flex;
+      gap: var(--s5);
+    }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: color var(--dur) ease;
+    }
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    /* ============================================================
+       FOCUS STATES (accessibility)
+    ============================================================ */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 900px) {
+      .capabilities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .now-layout {
+        grid-template-columns: 1fr;
+      }
+      .now-sidebar { order: -1; }
+    }
+
+    @media (max-width: 680px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-avatar {
+        width: 120px;
+        aspect-ratio: 4 / 5;
+        order: -1;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .capabilities-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding: var(--s12) 0; }
+      .nav-links { display: none; }
+      .available-badge { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 420px) {
+      .nav-links { gap: var(--s4); }
+      .hero-ctas { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====================================================
+       NAV
+  ==================================================== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <!-- PLACEHOLDER: Replace with your wordmark or logo -->
+        <a href="#" class="nav-logo" aria-label="Home">
+          <span class="nav-logo-mark">//</span>&nbsp;devgoodluck
+        </a>
+        <div class="nav-right">
+          <ul class="nav-links" role="list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+          <div class="available-badge" role="status" aria-label="Currently available for work">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Available for work
+          </div>
+          <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span class="ham-line" aria-hidden="true"></span>
+            <span class="ham-line" aria-hidden="true"></span>
+            <span class="ham-line" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Navigation" aria-hidden="true">
+      <div class="mobile-nav-inner">
+        <ul class="mobile-nav-links" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="mobile-nav-footer">
+          <div class="available-badge">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Available for work
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ====================================================
+         HERO
+    ==================================================== -->
+    <section class="hero" id="about" aria-labelledby="hero-name">
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="hero-content">
+
+            <div class="hero-status reveal" role="status">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              Open to new opportunities
+            </div>
+
+            <!-- PLACEHOLDER: Your role/title -->
+            <span class="hero-role reveal">Full-Stack Engineer</span>
+
+            <!-- PLACEHOLDER: Your name -->
+            <h1 class="hero-name reveal" id="hero-name">
+              Bassey<br>Goodluck
+            </h1>
+
+            <!-- PLACEHOLDER: One punchy tagline sentence -->
+            <p class="hero-tagline reveal">
+              I build fast, thoughtful software — from the API layer to the interface people actually touch.
+            </p>
+
+            <!-- PLACEHOLDER: 2–3 bio paragraphs. Wrap key phrases in <strong> -->
+            <div class="hero-bio reveal">
+              <p>
+                I'm a software engineer with <strong>6+ years of experience</strong> building products that scale — from early-stage startups to companies serving millions. I care about <strong>clean architecture, developer experience,</strong> and shipping things that work reliably in production.
+              </p>
+              <p>
+                Most recently I've been focused on <strong>full-stack web applications</strong> — Node.js APIs, React frontends, cloud infrastructure on AWS and GCP. I'm comfortable owning a feature end-to-end and working closely with product and design teams to ship things that matter.
+              </p>
+              <p>
+                When I'm not coding, I'm thinking about <strong>system design, performance optimization,</strong> and the craft of making complex things feel simple to use.
+              </p>
+            </div>
+
+            <!-- PLACEHOLDER: Update hrefs to your actual profiles -->
+            <div class="hero-socials reveal" aria-label="Social links">
+              <a href="#" class="social-pill" aria-label="GitHub profile" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                GitHub
+              </a>
+              <a href="#" class="social-pill" aria-label="LinkedIn profile" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              <a href="#" class="social-pill" aria-label="Twitter / X profile" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Twitter
+              </a>
+              <!-- PLACEHOLDER: Replace email address -->
+              <a href="mailto:hello@example.com" class="social-pill" aria-label="Send email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+                Email
+              </a>
+            </div>
+
+            <div class="hero-ctas reveal">
+              <!-- PLACEHOLDER: Update href to your resume file or link -->
+              <a href="#" class="btn btn-primary" aria-label="Download resume">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 15V3"/><path d="m8 11 4 4 4-4"/><path d="M2 17l.621 2.485A2 2 0 004.561 21h14.878a2 2 0 001.94-1.515L22 17"/></svg>
+                Download Resume
+              </a>
+              <!-- PLACEHOLDER: Replace email -->
+              <a href="mailto:hello@example.com" class="btn btn-secondary" id="contact" aria-label="Contact me">
+                Get in Touch
+              </a>
+            </div>
+
+          </div>
+
+          <div class="hero-avatar">
+            <img src="IMG_4612.JPG" alt="Bassey Goodluck, Full-Stack Engineer">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STATS
+    ==================================================== -->
+    <section class="stats-section" aria-label="Key statistics">
+      <div class="container">
+        <!-- PLACEHOLDER: Update data-count and data-suffix for each stat.
+             The JS counter reads these attributes and animates from 0 to data-count,
+             appending data-suffix (e.g. "+" or "%") after the number. -->
+        <div class="stats-grid">
+          <div class="stat-item reveal">
+            <span class="stat-number" data-count="6" data-suffix="+">0</span>
+            <span class="stat-label">Years experience</span>
+          </div>
+          <div class="stat-item reveal reveal-d1">
+            <span class="stat-number" data-count="40" data-suffix="+">0</span>
+            <span class="stat-label">Projects shipped</span>
+          </div>
+          <div class="stat-item reveal reveal-d2">
+            <span class="stat-number" data-count="12">0</span>
+            <span class="stat-label">Companies served</span>
+          </div>
+          <div class="stat-item reveal reveal-d3">
+            <span class="stat-number" data-count="99" data-suffix="%">0</span>
+            <span class="stat-label">Client satisfaction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         PULL QUOTE
+    ==================================================== -->
+    <section class="quote-section" aria-labelledby="quote-label">
+      <div class="container">
+        <div class="quote-inner reveal">
+          <span class="quote-label" id="quote-label">Engineering philosophy</span>
+          <!-- PLACEHOLDER: Replace with your own philosophy quote -->
+          <blockquote class="pull-quote">
+            "Good software is invisible — it gets out of the way and lets people do what they actually came to do."
+          </blockquote>
+          <div class="quote-rule" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         CAPABILITIES / WHAT I DO
+    ==================================================== -->
+    <section class="capabilities-section" id="work" aria-labelledby="capabilities-heading">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-eyebrow reveal">Capabilities</span>
+          <h2 class="section-title reveal" id="capabilities-heading">What I do</h2>
+        </header>
+
+        <!-- PLACEHOLDER: Update card titles, descriptions, and numbers
+             to match your actual skill categories (5–6 cards) -->
+        <div class="capabilities-grid">
+
+          <article class="capability-card reveal">
+            <span class="card-num">01</span>
+            <h3 class="card-title">Frontend Engineering</h3>
+            <p class="card-desc">React, TypeScript, and modern CSS — building interfaces that are fast, accessible, and a pleasure to use.</p>
+          </article>
+
+          <article class="capability-card reveal reveal-d1">
+            <span class="card-num">02</span>
+            <h3 class="card-title">Backend & APIs</h3>
+            <p class="card-desc">Node.js, REST and GraphQL — well-designed APIs and the kind of architecture that holds up under real load.</p>
+          </article>
+
+          <article class="capability-card reveal reveal-d2">
+            <span class="card-num">03</span>
+            <h3 class="card-title">Cloud Infrastructure</h3>
+            <p class="card-desc">AWS and GCP — containers, serverless, CI/CD pipelines, and deployment patterns that don't wake you up at 3am.</p>
+          </article>
+
+          <article class="capability-card reveal reveal-d3">
+            <span class="card-num">04</span>
+            <h3 class="card-title">Performance & Scale</h3>
+            <p class="card-desc">Profiling, caching strategies, query optimization — making things fast without making them fragile.</p>
+          </article>
+
+          <article class="capability-card reveal reveal-d4">
+            <span class="card-num">05</span>
+            <h3 class="card-title">Product Thinking</h3>
+            <p class="card-desc">I ask why before I ask how. Working closely with designers and PMs to ship things that actually matter to users.</p>
+          </article>
+
+          <article class="capability-card reveal reveal-d5">
+            <span class="card-num">06</span>
+            <h3 class="card-title">Technical Leadership</h3>
+            <p class="card-desc">Code reviews, architecture decisions, onboarding — setting a quality bar and helping teams consistently hit it.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         NOW — CURRENT FOCUS
+    ==================================================== -->
+    <section class="now-section" aria-labelledby="now-heading">
+      <div class="container">
+        <div class="now-layout">
+
+          <div>
+            <header class="section-header">
+              <span class="section-eyebrow reveal">Right now</span>
+              <h2 class="section-title reveal" id="now-heading">What I'm focused on</h2>
+            </header>
+
+            <!-- PLACEHOLDER: Replace these 4 items with your actual current focuses.
+                 Tag options: tag-role / tag-building / tag-ongoing / tag-learning -->
+            <div class="now-list" aria-label="Current focuses">
+
+              <div class="now-item reveal">
+                <span class="now-tag tag-role" aria-label="Status: Current Role">Current Role</span>
+                <div class="now-item-body">
+                  <!-- PLACEHOLDER: Your current employer and what you're doing there -->
+                  <p class="now-item-title">Senior Engineer @ Acme Corp</p>
+                  <p class="now-item-desc">Leading platform architecture and mentoring mid-level engineers on the growth team.</p>
+                </div>
+              </div>
+
+              <div class="now-item reveal reveal-d1">
+                <span class="now-tag tag-building" aria-label="Status: Building">Building</span>
+                <div class="now-item-body">
+                  <!-- PLACEHOLDER: A side project or open source work you're building -->
+                  <p class="now-item-title">OSS developer tooling</p>
+                  <p class="now-item-desc">A CLI that streamlines local environment setup for Node.js monorepos — early alpha.</p>
+                </div>
+              </div>
+
+              <div class="now-item reveal reveal-d2">
+                <span class="now-tag tag-ongoing" aria-label="Status: Ongoing">Ongoing</span>
+                <div class="now-item-body">
+                  <!-- PLACEHOLDER: An ongoing commitment (writing, community, etc.) -->
+                  <p class="now-item-title">Writing about system design</p>
+                  <p class="now-item-desc">Publishing deep-dives on distributed systems patterns and scalability tradeoffs.</p>
+                </div>
+              </div>
+
+              <div class="now-item reveal reveal-d3">
+                <span class="now-tag tag-learning" aria-label="Status: Learning">Learning</span>
+                <div class="now-item-body">
+                  <!-- PLACEHOLDER: Something you're actively studying or exploring -->
+                  <p class="now-item-title">Rust for systems work</p>
+                  <p class="now-item-desc">Building small CLI tools to build intuition for the ownership model and memory management.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Sidebar availability note -->
+          <aside class="now-sidebar reveal" aria-label="Availability">
+            <span class="now-sidebar-label">A note on availability</span>
+            <!-- PLACEHOLDER: Replace with your own availability statement -->
+            <p class="now-sidebar-quote">
+              "I'm selectively open to senior IC roles and founding engineer opportunities at companies doing interesting technical work."
+            </p>
+            <!-- PLACEHOLDER: Update with your actual availability and location -->
+            <p class="now-sidebar-meta">Last updated: June 2025 · Remote or NYC / London</p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         MARQUEE — COMPANIES / CLIENTS
+    ==================================================== -->
+    <section class="marquee-section" aria-labelledby="marquee-label">
+      <div class="marquee-header">
+        <!-- PLACEHOLDER: Update label text if needed -->
+        <span class="eyebrow" id="marquee-label">Companies &amp; clients</span>
+      </div>
+
+      <!-- PLACEHOLDER: Replace chip text below with your actual company/client names.
+           The list is duplicated exactly so the marquee loops seamlessly.
+           Both .marquee-set divs must contain identical chips. -->
+      <div class="marquee-wrap">
+        <div class="marquee-track" aria-hidden="true" role="presentation">
+
+          <!-- Set 1 -->
+          <div class="marquee-set">
+            <span class="marquee-chip">Vercel<span class="m-dot"></span></span>
+            <span class="marquee-chip">Stripe<span class="m-dot"></span></span>
+            <span class="marquee-chip">Linear<span class="m-dot"></span></span>
+            <span class="marquee-chip">Notion<span class="m-dot"></span></span>
+            <span class="marquee-chip">Figma<span class="m-dot"></span></span>
+            <span class="marquee-chip">Shopify<span class="m-dot"></span></span>
+            <span class="marquee-chip">Supabase<span class="m-dot"></span></span>
+            <span class="marquee-chip">Railway<span class="m-dot"></span></span>
+            <span class="marquee-chip">PlanetScale<span class="m-dot"></span></span>
+            <span class="marquee-chip">Render<span class="m-dot"></span></span>
+          </div>
+
+          <!-- Set 2 — identical copy for seamless loop -->
+          <div class="marquee-set" aria-hidden="true">
+            <span class="marquee-chip">Vercel<span class="m-dot"></span></span>
+            <span class="marquee-chip">Stripe<span class="m-dot"></span></span>
+            <span class="marquee-chip">Linear<span class="m-dot"></span></span>
+            <span class="marquee-chip">Notion<span class="m-dot"></span></span>
+            <span class="marquee-chip">Figma<span class="m-dot"></span></span>
+            <span class="marquee-chip">Shopify<span class="m-dot"></span></span>
+            <span class="marquee-chip">Supabase<span class="m-dot"></span></span>
+            <span class="marquee-chip">Railway<span class="m-dot"></span></span>
+            <span class="marquee-chip">PlanetScale<span class="m-dot"></span></span>
+            <span class="marquee-chip">Render<span class="m-dot"></span></span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================
+       FOOTER
+  ==================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- PLACEHOLDER: Update name and year -->
+        <p class="footer-copy">
+          &copy; 2025 <span>Bassey Goodluck</span> &mdash; Built with care.
+        </p>
+        <!-- PLACEHOLDER: Update hrefs to your real profiles -->
+        <nav class="footer-links" aria-label="Footer links">
+          <a href="#" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="mailto:hello@example.com">Email</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       JAVASCRIPT
+  ==================================================== -->
+  <script>
+    // === SCROLL REVEAL ===
+    // Adds .visible to .reveal elements when they enter the viewport
+    const revealObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.classList.add('visible');
+            revealObs.unobserve(target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -36px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // === STAT COUNTERS ===
+    // Reads data-count and data-suffix attributes, animates from 0
+    function animateCounter(el) {
+      const target   = parseInt(el.dataset.count, 10);
+      const suffix   = el.dataset.suffix ?? '';
+      const duration = 1500;
+      const start    = performance.now();
+
+      const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+      function frame(now) {
+        const t     = Math.min((now - start) / duration, 1);
+        const value = Math.round(easeOutCubic(t) * target);
+        el.textContent = value + suffix;
+        if (t < 1) requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    const counterObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            animateCounter(target);
+            counterObs.unobserve(target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+    // === NAV ACTIVE STATE ===
+    // Gently highlights the active nav link based on scroll position
+    const navLinks = [...document.querySelectorAll('.nav-links a')];
+    const watchSections = [...document.querySelectorAll('section[id]')];
+
+    const navObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!isIntersecting) return;
+          const id = target.getAttribute('id');
+          navLinks.forEach(link => {
+            const active = link.getAttribute('href') === '#' + id;
+            link.style.color = active ? 'var(--text-primary)' : '';
+          });
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    watchSections.forEach(s => navObs.observe(s));
+
+    // === THEME TOGGLE ===
+    (function () {
+      const root = document.documentElement;
+      const btn  = document.getElementById('theme-toggle');
+      if (!btn) return;
+      const SUN  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>`;
+      const MOON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+      function current() { return root.getAttribute('data-theme') || 'dark'; }
+      function sync(theme) {
+        const dark = theme === 'dark';
+        btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        btn.innerHTML = dark ? SUN : MOON;
+      }
+      function apply(theme) {
+        root.classList.add('theme-transitioning');
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        sync(theme);
+        setTimeout(() => root.classList.remove('theme-transitioning'), 280);
+      }
+      btn.addEventListener('click', () => apply(current() === 'dark' ? 'light' : 'dark'));
+      sync(current());
+    }());
+
+    // === MOBILE NAV ===
+    (function () {
+      const hamburger = document.getElementById('nav-hamburger');
+      const panel     = document.getElementById('mobile-nav');
+      if (!hamburger || !panel) return;
+
+      function isOpen() { return hamburger.getAttribute('aria-expanded') === 'true'; }
+
+      function open() {
+        hamburger.setAttribute('aria-expanded', 'true');
+        hamburger.setAttribute('aria-label', 'Close menu');
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+      }
+      function close() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      }
+
+      hamburger.addEventListener('click', () => isOpen() ? close() : open());
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && isOpen()) { close(); hamburger.focus(); }
+      });
+
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+
+      document.addEventListener('click', e => {
+        const nav = hamburger.closest('nav');
+        if (isOpen() && !nav.contains(e.target)) close();
+      });
+    }());
+  </script>
+
+</body>
+</html>
