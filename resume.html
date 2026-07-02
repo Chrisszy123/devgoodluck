@@ -1158,74 +1158,103 @@
     ============================================================ */
     const roles = [
       {
-        company: "Acme Corp",
-        logoLetter: "A",
+        company: "MASQ",
+        logoLetter: "M",
         title: "Senior Software Engineer",
         status: "Current",          // "Current" | "Contract" | "Intern" | any year string
-        dateRange: "01/2024 – Present",
+        dateRange: "11/2023 – Present",
         location: "Remote",
         type: "Full-time",
-        companyUrl: "https://example.com", // set to "" to skip the link
-        summary: "Leading platform architecture that cut deploy times by 60% and mentoring a team of 5 engineers.",
+        companyUrl: "https://masqbrowser.com", // set to "" to skip the link
+        summary: "Leading the decentralized VPN browser architecture and mentoring a team of 3 engineers.",
         highlights: [
-          "Redesigned the CI/CD pipeline using **GitHub Actions + Docker**, reducing average deploy time from **22 min → 9 min** across 4 services.",
-          "Introduced **feature-flag infrastructure** that allowed safe gradual rollouts, eliminating 3 major production incidents in H1 2024.",
-          "Mentored **5 mid-level engineers** through bi-weekly design reviews and pair-programming sessions, all promoted within 12 months.",
-          "Owned end-to-end delivery of a **payments integration (Stripe)** handling $2M+ in monthly transaction volume with **0% data loss**."
+          "Owned end-to-end delivery of a payments integration (Stripe) handling $20k+ in monthly premium subscription revenue with 0% data loss.",
+          "Reduced integration overhead by standardizing blockchain interactions through shared-state architecture and reusable backend SDKs, enabling faster and more reliable feature delivery across squads.",
+          "Achieved reliable service for 1,000+ active users by designing and operating the full backend for a privacy-first decentralised browser, with on-chain components, wallet integrations, and P2P networking.",
+          "Eliminated deployment inconsistencies across environments by containerising backend services with Docker and managing secrets, environment configs, and deployment pipelines end-to-end.",
+          "Reduced production incident resolution time by operating Kubernetes workloads directly, debugging pods, services, and runtime failures in live environments to maintain uptime.",
+          "Maintained zero-disruption Web3 service availability by supporting blockchain interactions, Webhook pipelines, and REST APIs in production, with structured log-driven debugging and incident response"
         ],
-        techStack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Redis", "Docker", "GitHub Actions", "AWS", "Stripe"]
+        techStack: ["TypeScript", "React", "Node.js", "PostgreSQL", "Redis", "Docker", "GitHub Actions", "AWS", "Stripe", "Python", "FastAPI", "Stripe", "Kafka", "RabbitMQ", "Distributed Systems"]
       },
       {
-        company: "Lightspeed Labs",
-        logoLetter: "L",
+        company: "O1NODE",
+        logoLetter: "O",
         title: "Full-Stack Engineer",
-        status: "2022–2024",
-        dateRange: "03/2022 – 12/2023",
-        location: "New York, NY (Hybrid)",
+        status: "contract",
+        dateRange: "05/2023 – 09/2023",
+        location: "Remote",
         type: "Full-time",
-        companyUrl: "https://example.com",
+        companyUrl: "https://o1node.com",
         summary: "Built the core product from alpha to 50k MAU, owning the frontend, API, and real-time data layer.",
         highlights: [
-          "Architected the real-time notification system using **WebSockets + Redis Pub/Sub**, reducing latency from **13s → 200ms** at peak load.",
-          "Scaled the application from **0 to 50,000 monthly active users** in 18 months, maintaining **99.97% uptime**.",
-          "Rebuilt the onboarding flow with improved UX, lifting trial-to-paid conversion from **8% → 21%**.",
-          "Introduced **end-to-end testing with Playwright**, cutting regression bugs reported in production by ~70%."
+          "Architected the real-time notification system using WebSockets + Redis Pub/Sub, reducing latency from 13s → 200ms at peak load.",
+          "Built and operated a high‑traffic Web3 dApp enabling thousands of users to complete on‑chain missions.",
+          "Rebuilt the onboarding flow with improved UX, lifting trial-to-paid conversion from 8% → 21%.",
+          "Deployed and maintained production services via CI/CD pipelines, ensuring safe and repeatable releases.",
+          "Supported blockchain‑connected backend APIs and smart contract workflows.",
+          "Improved reliability through better error handling, deployment discipline, and API structure."
         ],
         techStack: ["React", "Next.js", "TypeScript", "tRPC", "Prisma", "PostgreSQL", "Redis", "WebSockets", "Playwright", "Vercel"]
       },
       {
-        company: "Meridian Digital",
-        logoLetter: "M",
+        company: "Altura",
+        logoLetter: "A",
         title: "Frontend Engineer",
         status: "Contract",
         dateRange: "06/2021 – 02/2022",
         location: "Remote",
         type: "Contract",
-        companyUrl: "",
+        companyUrl: "https://www.altura.com",
         summary: "Contract engagement to rebuild a legacy dashboard into a modern SPA, delivering on time and under budget.",
         highlights: [
-          "Migrated a **jQuery + PHP** admin dashboard to a **React SPA**, reducing bundle size by **64%** and initial load time by **3.1s**.",
-          "Implemented **WCAG 2.1 AA accessibility** across 40+ components, enabling the client to pass a compliance audit.",
-          "Built a custom **data-table component** with virtual scrolling that handles **100k+ rows** without jank."
+          "Implemented WCAG 2.1 AA accessibility across 40+ components, enabling the client to pass a compliance audit.",
+          "Built a custom data-table component with virtual scrolling that handles 100k+ rows without jank.",
+          "Supported production Web3 applications and internal tooling for revenue‑generating NFT systems.",
+          "Built backend services and automation tools improving operational efficiency by 30%.",
+          "Assisted with deployment, monitoring, and debugging of Node.js services integrated with blockchain logic."
         ],
-        techStack: ["React", "TypeScript", "CSS Modules", "Webpack", "Chart.js", "PHP", "REST APIs"]
+        techStack: ["React", "TypeScript", "CSS Modules", "Webpack", "Chart.js", "Node.js", "REST APIs"]
       },
       {
-        company: "BuildWave",
-        logoLetter: "B",
-        title: "Software Engineering Intern",
-        status: "Intern",
-        dateRange: "05/2020 – 08/2020",
-        location: "San Francisco, CA",
-        type: "Internship",
-        companyUrl: "https://example.com",
-        summary: "Summer internship — built an internal tooling dashboard used daily by the ops team.",
+        company: "MonkeyDOONFT",
+        logoLetter: "M",
+        title: "Full-Stack Engineer",
+        status: "Contract",
+        dateRange: "09/2022 – 03/2023",
+        location: "Remote",
+        type: "Full-time",
+        companyUrl: "https://www.monkeydoonft.com",
+        summary: "Built an internal tooling dashboard used daily by the ops team.",
         highlights: [
-          "Delivered a full-stack internal dashboard in **8 weeks** that replaced a manual spreadsheet process used by 12 operations staff.",
-          "Added **CSV export and scheduling** features based on team feedback during the internship — shipped to production before end of term.",
-          "Received a return offer (declined to pursue other opportunities)."
+          "Architected a front-end service of implementing blockchain calls by using EthersJs to interact with a smart contract given the ABI and the contract address.",
+          "Tracked user interactions throughout the application with Reactjs higher- order components to reuse component logic.",
+          "Developed and deployed the marketplace smart contract using Solidity that’s saw sales increase by over 40%."
         ],
-        techStack: ["Vue.js", "Express", "MongoDB", "Node.js", "Tailwind CSS"]
+        techStack: ["React", "TypeScript", "EthersJs", "Solidity", "Node.js", "Tailwind CSS"]
+      },
+      {
+        company: "Freelance / Consultancy",
+        logoLetter: "F",
+        title: "Backend & Web3 Engineer",
+        status: "Freelance / Consultancy",
+        dateRange: "09/2020 – Present",
+        location: "Remote",
+        type: "Freelance / Consultancy",
+        companyUrl: "",
+        summary: "Built backend systems, APIs, and infrastructure solutions for startups and independent products across SaaS and Web3 ecosystems.",
+        highlights: [
+          "Architected a front-end service of implementing blockchain calls by using EthersJs to interact with a smart contract given the ABI and the contract address.",
+          "Tracked user interactions throughout the application with Reactjs higher- order components to reuse component logic.",
+          "Developed and deployed the marketplace smart contract using Solidity that’s saw sales increase by over 40%.",
+          "Designed and deployed backend systems, APIs, and infrastructure solutions for startups",
+          "Built scalable authentication systems, RBAC architectures, and secure API infrastructures for multi-user platforms.",
+          "Developed blockchain-integrated backend services involving wallet systems, transaction workflows, RPC integrations, and identity/authentication layers.",
+          "Architected private VPS infrastructure setups using reverse proxies, API gateways, Layer 4/Layer 7 load balancing, and containerized deployments for improved security and scalability.",
+          "Built infrastructure and backend tooling focused on high availability, observability, and efficient service orchestration.",
+          "Collaborated directly with founders and distributed engineering teams to design MVPs, optimize infrastructure costs, and scale backend platforms."
+        ],
+        techStack: ["React", "TypeScript", "Node.js", "PostgreSQL", "Redis", "Docker", "GitHub Actions", "AWS", "Stripe"]
       }
     ];
 
